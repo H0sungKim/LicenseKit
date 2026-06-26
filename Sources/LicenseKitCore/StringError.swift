@@ -1,8 +1,8 @@
 //
 //  StringError.swift
-//  MyCommandPlugin
+//  LicenseKit
 //
-//  Created by Hosung.Kim on 2026.06.26 10:39.
+//  Created by Hosung.Kim on 2026.06.26.
 //
 
 import protocol Foundation.CustomNSError

@@ -1,8 +1,8 @@
 //
 //  WorkspaceState.swift
-//  MyCommandPlugin
+//  LicenseKit
 //
-//  Created by Hosung.Kim on 2026.06.25 18:59.
+//  Created by Hosung.Kim on 2026.06.25.
 //
 
 import Foundation
