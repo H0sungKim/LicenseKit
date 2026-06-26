@@ -5,12 +5,30 @@ import PackageDescription
 
 let package = Package(
     name: "LicenseKit",
+    platforms: [
+        .iOS(.v16),
+        .macOS(.v13),
+        .tvOS(.v16),
+        .watchOS(.v9),
+    ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "LicenseKit",
             targets: ["LicenseKit"]
         ),
+        .plugin(
+            name: "LicenseSettingsBundle",
+            targets: [
+                "LicenseSettingsBundlePlugin"
+            ]
+        ),
+        .plugin(
+            name: "LicenseSwiftSource",
+            targets: [
+                "LicenseSwiftSourcePlugin"
+            ]
+        )
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -27,9 +45,37 @@ let package = Package(
                 .enableUpcomingFeature("ApproachableConcurrency"),
             ],
         ),
+        .plugin(
+            name: "LicenseSettingsBundlePlugin",
+            capability: .command(
+                intent: .custom(
+                    verb: "",
+                    description: ""
+                ),
+                permissions: [
+                    .writeToPackageDirectory(reason: "")
+                ]
+            )
+        ),
+        .plugin(
+            name: "LicenseSwiftSourcePlugin",
+            capability: .buildTool(),
+            dependencies: [
+                .target(name: "LicenseSwiftSourceGenerator")
+            ]
+        ),
+        .executableTarget(name: "LicenseSwiftSourceGenerator"),
+        
         .testTarget(
             name: "LicenseKitTests",
             dependencies: ["LicenseKit"],
+            swiftSettings: [
+                .enableUpcomingFeature("ApproachableConcurrency"),
+            ],
+        ),
+        .testTarget(
+            name: "LicenseKitCoreTests",
+            dependencies: ["LicenseKitCore"],
             swiftSettings: [
                 .enableUpcomingFeature("ApproachableConcurrency"),
             ],
