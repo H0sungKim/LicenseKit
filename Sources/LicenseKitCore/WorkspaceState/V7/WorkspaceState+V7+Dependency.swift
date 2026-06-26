@@ -1,5 +1,5 @@
 //
-//  WorkspaceState+V4+Dependency.swift
+//  WorkspaceState+V7+Dependency.swift
 //  LicenseKit
 //
 //  Created by Hosung.Kim on 2026.06.26.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension WorkspaceState.V4 {
+extension WorkspaceState.V7 {
     struct Dependency: Decodable {
         let packageRef: PackageReference
         let state: State
