@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  LicensePlistFactory.swift
 //  LicenseKit
 //
 //  Created by Hosung.Kim on 2026.06.29.
@@ -10,7 +10,7 @@ import LicenseKitCore
 
 struct LicensePlistFactory {
     
-    func makeLicensePlist(workspaceState: WorkspaceState) throws -> Data {
+    func makeLicensePlist(workspaceState: WorkspaceState, to filePath: URL) throws {
         let propertyListHeader = [
             "Type": "PSGroupSpecifier",
             "Title": "License"
@@ -25,10 +25,10 @@ struct LicensePlistFactory {
             format: .xml,
             options: 0
         )
-        return licensePlist
+        try licensePlist.write(to: filePath.appending(path: "License.plist"))
     }
     
-    func makePackageChildPanes(workspaceState: WorkspaceState) -> [[String: String]] {
+    private func makePackageChildPanes(workspaceState: WorkspaceState) -> [[String: String]] {
         switch workspaceState {
         case let .v4(v4):
             return []
@@ -37,13 +37,17 @@ struct LicensePlistFactory {
         case let .v6(v6):
             return []
         case let .v7(v7):
-            return v7.object.dependencies.map { dependency in
-                [
-                    "Title": dependency.packageRef.name,
-                    "Type": "PSChildPaneSpecifier",
-                    "File": "PackageLicense/\(dependency.packageRef.name)",
-                ]
-            }
+            return makePackageChildPanes(workspaceStateV7: v7)
+        }
+    }
+    
+    private func makePackageChildPanes(workspaceStateV7: WorkspaceState.V7) -> [[String: String]] {
+        return workspaceStateV7.object.dependencies.map { dependency in
+            [
+                "Title": dependency.packageRef.name,
+                "Type": "PSChildPaneSpecifier",
+                "File": "PackageLicense/\(dependency.packageRef.name)",
+            ]
         }
     }
     

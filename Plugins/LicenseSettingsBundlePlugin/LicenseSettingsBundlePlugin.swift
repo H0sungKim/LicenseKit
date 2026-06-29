@@ -16,7 +16,7 @@ extension LicenseSettingsBundlePlugin: XcodeCommandPlugin {
     func performCommand(context: XcodePluginContext, arguments: [String]) throws {
         print("Hello, World!")
         
-        let workspaceStateURL = try sourcePackages(context.pluginWorkDirectoryURL).appending(path: "workspace-state.json")
+        let sourcePackagesURL = try getSourcePackagesURL(context.pluginWorkDirectoryURL)
 //        let workspaceState = try JSONDecoder().decode(WorkspaceState.self, from: Data(contentsOf: workspaceStateURL))
         
 //        print(workspaceState)
@@ -38,7 +38,7 @@ extension LicenseSettingsBundlePlugin: XcodeCommandPlugin {
 //            try licensePlist.write(to: settingsBundleURL.appending(component: "License.plist"))
             let tool = try context.tool(named: "LicenseSettingsBundleGenerator")
             try tool.run(arguments: [
-                workspaceStateURL.path(),
+                sourcePackagesURL.path(),
                 settingsBundleURL.path()
             ])
         }
@@ -73,7 +73,7 @@ extension LicenseSettingsBundlePlugin: XcodeCommandPlugin {
         return isDirectory && existsSourcePackagesInDirectory
     }
 
-    func sourcePackages(_ pluginWorkDirectory: URL) throws -> URL {
+    func getSourcePackagesURL(_ pluginWorkDirectory: URL) throws -> URL {
 //        if let sourcePackagesPath = ProcessInfo.processInfo.environment["PLL_SOURCE_PACKAGES_PATH"] {
 //            print(URL(filePath: sourcePackagesPath))
 //            return URL(filePath: sourcePackagesPath)
