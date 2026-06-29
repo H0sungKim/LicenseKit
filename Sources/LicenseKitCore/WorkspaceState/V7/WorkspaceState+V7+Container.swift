@@ -8,9 +8,9 @@
 import Foundation
 
 extension WorkspaceState.V7 {
-    struct Container: Decodable {
-        let dependencies: [Dependency]
-        let artifacts: [Artifact]
-        let prebuilts: [Prebuilt]
+    package struct Container: Decodable {
+        package let dependencies: [Dependency]
+        package let artifacts: [Artifact]
+        package let prebuilts: [Prebuilt]
     }
 }

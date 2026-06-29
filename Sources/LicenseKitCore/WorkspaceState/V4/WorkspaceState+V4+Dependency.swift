@@ -8,17 +8,17 @@
 import Foundation
 
 extension WorkspaceState.V4 {
-    struct Dependency: Decodable {
-        let packageRef: PackageReference
-        let state: State
-        let subpath: String
-        let basedOn: IndirectDependency?
+    package struct Dependency: Decodable {
+        package let packageRef: PackageReference
+        package let state: State
+        package let subpath: String
+        package let basedOn: IndirectDependency?
     }
     
-    indirect enum IndirectDependency: Decodable {
+    package indirect enum IndirectDependency: Decodable {
         case value(Dependency)
         
-        init(from decoder: any Decoder) throws {
+        package init(from decoder: any Decoder) throws {
             let container = try decoder.singleValueContainer()
             let dependency = try container.decode(Dependency.self)
             self = .value(dependency)

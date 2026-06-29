@@ -8,9 +8,9 @@
 import Foundation
 
 extension WorkspaceState.V7.Dependency.State {
-    struct CheckoutState: Decodable {
-        let revision: String
-        let branch: String?
-        let version: String?
+    package struct CheckoutState: Decodable {
+        package let revision: String
+        package let branch: String?
+        package let version: String?
     }
 }

@@ -8,8 +8,8 @@
 import Foundation
 
 extension WorkspaceState {
-    struct V4: Decodable {
-        let version: Int
-        let object: Container
+    package struct V4: Decodable {
+        package let version: Int
+        package let object: Container
     }
 }

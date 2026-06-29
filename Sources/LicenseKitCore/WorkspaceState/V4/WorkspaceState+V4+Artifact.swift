@@ -8,10 +8,10 @@
 import Foundation
 
 extension WorkspaceState.V4 {
-    struct Artifact: Decodable {
-        let packageRef: PackageReference
-        let targetName: String
-        let source: Source
-        let path: String
+    package struct Artifact: Decodable {
+        package let packageRef: PackageReference
+        package let targetName: String
+        package let source: Source
+        package let path: String
     }
 }

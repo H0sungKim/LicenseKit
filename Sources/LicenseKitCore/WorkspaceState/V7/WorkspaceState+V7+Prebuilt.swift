@@ -8,14 +8,14 @@
 import Foundation
 
 extension WorkspaceState.V7 {
-    struct Prebuilt: Decodable {
-        let identity: String
-        let version: String
-        let libraryName: String
-        let path: String
-        let checkoutPath: String?
-        let products: [String]
-        let includePath: [String]?
-        let cModules: [String]
+    package struct Prebuilt: Decodable {
+        package let identity: String
+        package let version: String
+        package let libraryName: String
+        package let path: String
+        package let checkoutPath: String?
+        package let products: [String]
+        package let includePath: [String]?
+        package let cModules: [String]
     }
 }

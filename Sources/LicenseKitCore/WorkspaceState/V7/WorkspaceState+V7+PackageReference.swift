@@ -8,13 +8,13 @@
 import Foundation
 
 extension WorkspaceState.V7 {
-    struct PackageReference: Decodable {
-        let identity: String
-        let kind: Kind
-        let location: String
-        let name: String
+    package struct PackageReference: Decodable {
+        package let identity: String
+        package let kind: Kind
+        package let location: String
+        package let name: String
         
-        enum Kind: String, Decodable {
+        package enum Kind: String, Decodable {
             case root
             case fileSystem
             case localSourceControl

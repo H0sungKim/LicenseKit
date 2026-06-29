@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum WorkspaceState {
+package enum WorkspaceState {
     case v4(V4)
     case v5(V5)
     case v6(V6)
@@ -20,7 +20,7 @@ extension WorkspaceState: Decodable {
         case version
     }
     
-    init(from decoder: any Decoder) throws {
+    package init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let version = try container.decode(Int.self, forKey: .version)
         

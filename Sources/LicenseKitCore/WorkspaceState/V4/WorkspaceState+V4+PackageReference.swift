@@ -8,13 +8,13 @@
 import Foundation
 
 extension WorkspaceState.V4 {
-    struct PackageReference: Decodable {
-        let identity: String
-        let kind: String
-        let location: String
-        let name: String
+    package struct PackageReference: Decodable {
+        package let identity: String
+        package let kind: String
+        package let location: String
+        package let name: String
         
-        init(from decoder: Decoder) throws {
+        package init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.identity = try container.decode(String.self, forKey: .identity)
             self.kind = try container.decode(String.self, forKey: .kind)

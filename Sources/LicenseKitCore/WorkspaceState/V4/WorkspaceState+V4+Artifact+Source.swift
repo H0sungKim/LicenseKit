@@ -8,11 +8,11 @@
 import Foundation
 
 extension WorkspaceState.V4.Artifact {
-    enum Source: Decodable {
+    package enum Source: Decodable {
         case remote(url: String, checksum: String)
         case local(checksum: String? = nil)
         
-        init(from decoder: Decoder) throws {
+        package init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             let kind = try container.decode(String.self, forKey: .type)
             switch kind {

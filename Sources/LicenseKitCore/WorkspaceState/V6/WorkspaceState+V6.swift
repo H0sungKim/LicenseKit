@@ -8,7 +8,7 @@
 import Foundation
 
 extension WorkspaceState {
-    struct V6: Decodable {
+    package struct V6: Decodable {
         let version: Int
     }
 }

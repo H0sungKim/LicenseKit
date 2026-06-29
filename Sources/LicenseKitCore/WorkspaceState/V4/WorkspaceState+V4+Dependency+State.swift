@@ -8,12 +8,12 @@
 import Foundation
 
 extension WorkspaceState.V4.Dependency {
-    enum State: Decodable {
+    package enum State: Decodable {
         case fileSystem
         case sourceControlCheckout(checkoutState: CheckoutState)
         case edited(path: String?)
         
-        init(from decoder: any Decoder) throws {
+        package init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             let kind = try container.decode(String.self, forKey: .name)
             switch kind {
