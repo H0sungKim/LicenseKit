@@ -49,11 +49,11 @@ let package = Package(
             name: "GenerateLicenseSettingsBundle",
             capability: .command(
                 intent: .custom(
-                    verb: "asdf",
-                    description: "sdf"
+                    verb: "generate-license-settings-bundle",
+                    description: "Generate license plist files in Settings.bundle from Swift package dependencies."
                 ),
                 permissions: [
-                    .writeToPackageDirectory(reason: "sdfsdf")
+                    .writeToPackageDirectory(reason: "Requires permission to write generated plist files into the project's Settings.bundle directory.")
                 ]
             ),
             dependencies: [
