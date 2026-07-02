@@ -17,33 +17,14 @@ extension LicenseSettingsBundlePlugin: XcodeCommandPlugin {
         print("Hello, World!")
         
         let sourcePackagesURL = try getSourcePackagesURL(context.pluginWorkDirectoryURL)
-//        let workspaceState = try JSONDecoder().decode(WorkspaceState.self, from: Data(contentsOf: workspaceStateURL))
-        
-//        print(workspaceState)
-        
-//        let licensePlist = try PropertyListSerialization.data(
-//            fromPropertyList: [
-//                "PreferenceSpecifiers": [
-//                    [
-//                        "Type": "PSGroupSpecifier",
-//                        "Title": "Test"
-//                    ]
-//                ]
-//            ],
-//            format: .xml,
-//            options: 0
-//        )
         
         if let settingsBundleURL = findSettingsBundle(from: context.xcodeProject.directoryURL) {
-//            try licensePlist.write(to: settingsBundleURL.appending(component: "License.plist"))
             let tool = try context.tool(named: "LicenseSettingsBundleGenerator")
             try tool.run(arguments: [
                 sourcePackagesURL.path(),
                 settingsBundleURL.path()
             ])
         }
-        
-        
     }
     
     func findSettingsBundle(from root: URL) -> URL? {
