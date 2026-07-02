@@ -14,12 +14,10 @@ import XcodeProjectPlugin
 extension LicenseSettingsBundlePlugin: XcodeCommandPlugin {
     // Entry point for command plugins applied to Xcode projects.
     func performCommand(context: XcodePluginContext, arguments: [String]) throws {
-        print("Hello, World!")
-        
         let sourcePackagesURL = try getSourcePackagesURL(context.pluginWorkDirectoryURL)
         
         if let settingsBundleURL = findSettingsBundle(from: context.xcodeProject.directoryURL) {
-            let tool = try context.tool(named: "LicenseSettingsBundleGenerator")
+            let tool = try context.tool(named: "LicenseSettingsBundleTool")
             try tool.run(arguments: [
                 sourcePackagesURL.path(),
                 settingsBundleURL.path()

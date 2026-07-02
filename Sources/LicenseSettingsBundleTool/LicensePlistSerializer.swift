@@ -8,7 +8,7 @@
 import Foundation
 import LicenseKitCore
 
-struct PlistSerializer {
+struct LicensePlistSerializer {
     
     func serializeLicensePlist(packageMetadatas: [PackageMetadata]) throws -> Data {
         let propertyListHeader = [

@@ -18,9 +18,9 @@ let package = Package(
             targets: ["LicenseKit"]
         ),
         .plugin(
-            name: "LicenseSettingsBundle",
+            name: "LicenseSettingsBundleCommand",
             targets: [
-                "LicenseSettingsBundlePlugin"
+                "GenerateLicenseSettingsBundle"
             ]
         ),
         .plugin(
@@ -46,7 +46,7 @@ let package = Package(
             ],
         ),
         .plugin(
-            name: "LicenseSettingsBundlePlugin",
+            name: "GenerateLicenseSettingsBundle",
             capability: .command(
                 intent: .custom(
                     verb: "asdf",
@@ -57,7 +57,7 @@ let package = Package(
                 ]
             ),
             dependencies: [
-                .target(name: "LicenseSettingsBundleGenerator")
+                .target(name: "LicenseSettingsBundleTool")
             ]
         ),
         .plugin(
@@ -69,12 +69,11 @@ let package = Package(
         ),
         .executableTarget(name: "LicenseSwiftSourceGenerator"),
         .executableTarget(
-            name: "LicenseSettingsBundleGenerator",
+            name: "LicenseSettingsBundleTool",
             dependencies: [
                 .target(name: "LicenseKitCore")
             ]
         ),
-        
         .testTarget(
             name: "LicenseKitTests",
             dependencies: ["LicenseKit"],
